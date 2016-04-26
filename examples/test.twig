@@ -1,0 +1,11 @@
+{% set event = {
+    'title': 'Test Title',
+    'description': 'This is a test event.',
+    'startDate': 'now',
+    'endDate': '',
+    'startTime': 'now',
+    'endTime': '',
+    'url': siteUrl,
+} %}
+
+{{ craft.plainIcs.render(event) }}
