@@ -1,0 +1,15 @@
+{% if entry is defined %}
+
+    {% set event = {
+        'title': entry.title,
+        'description': entry.description,
+        'startDate': entry.startDate,
+        'endDate': entry.endDate,
+        'startTime': entry.startTime,
+        'endTime': entry.endTime,
+        'url': entry.url,
+    } %}
+
+    {{ craft.plainIcs.render(event) }}
+
+{% endif %}
