@@ -1,4 +1,4 @@
-# Plain ICS
+# Plain ICS for [Craft CMS](https://craftcms.com)
 
 A Craft CMS plugin that implements [eluceo/iCal](https://github.com/eluceo/iCal) package for creating ICS files in your Twig templates.
 
