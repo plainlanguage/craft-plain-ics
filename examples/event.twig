@@ -1,13 +1,15 @@
 {% if entry is defined %}
 
     {% set event = {
-        'title': entry.title,
-        'description': entry.description,
-        'startDate': entry.startDate,
-        'endDate': entry.endDate,
-        'startTime': entry.startTime,
-        'endTime': entry.endTime,
-        'url': entry.url,
+        'title'           : entry.title,
+        'description'     : entry.description,
+        'startDateTime'   : entry.startDateTime,
+        'endDateTime'     : entry.endDateTime,
+        'url'             : entry.url,
+        'location'        : entry.location,
+        'alarmAction'     : 'DISPLAY',
+        'alarmDescription': entry.alarmDescription,
+        'alarmTrigger'    : entry.alarmTrigger // e.g. '-PT30M'
     } %}
 
     {{ craft.plainIcs.render(event) }}

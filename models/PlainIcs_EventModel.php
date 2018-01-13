@@ -5,6 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Eluceo\iCal\Component\Calendar as iCal;
 use Eluceo\iCal\Component\Event as iCalEvent;
+use Eluceo\iCal\Component\Alarm as iCalAlarm;
 
 class PlainIcs_EventModel extends BaseModel
 {
@@ -26,18 +27,21 @@ class PlainIcs_EventModel extends BaseModel
      */
     protected function defineAttributes()
     {
+        // Note that our datetimes can't be AttributeType:DateTime,
+        // otherwise they'll lose the time component.
         return [
             'title'         => AttributeType::String,
-            'startDate'     => AttributeType::DateTime,
-            'startTime'     => AttributeType::DateTime,
-            'endDate'       => AttributeType::DateTime,
-            'endTime'       => AttributeType::DateTime,
+            'startDateTime' => AttributeType::String,
+            'endDateTime'   => AttributeType::String,
             'description'   => AttributeType::String,
             'url'           => AttributeType::String,
             'location'      => AttributeType::String,
             'locationTitle' => AttributeType::String,
             'locationGeo'   => AttributeType::String,
             'filename'      => AttributeType::String,
+            'alarmTrigger'  => AttributeType::String,
+            'alarmAction'   => AttributeType::String,
+            'alarmDescription' => AttributeType::String,
         ];
     }
 
@@ -50,11 +54,18 @@ class PlainIcs_EventModel extends BaseModel
     {
         $timezone = new \DateTimeZone(craft()->timeZone);
 
-        $vCalendar = new iCal(craft()->config->get('siteUrl'));
+        $vCalendar = new iCal(craft()->config->get('environmentVariables')['siteUrl']);
         $vEvent    = new iCalEvent();
+        $vAlarm    = new iCalAlarm();
+        $startDate = new DateTime($this->startDateTime, $timezone);
+        $endDate   = new DateTime($this->endDateTime, $timezone);
 
-        $startDate = new DateTime($this->startDate . ' ' . $this->startTime, $timezone);
-        $endDate   = new DateTime($this->startDate . ' ' . $this->endTime, $timezone);
+        if ($this->alarmAction) {
+            $vAlarm
+                ->setTrigger($this->alarmTrigger)
+                ->setAction($this->alarmAction)
+                ->setDescription($this->alarmDescription);
+        }
 
         $vEvent
             ->setDtStart($startDate)
@@ -65,6 +76,10 @@ class PlainIcs_EventModel extends BaseModel
             ->setLocation($this->location, $this->locationTitle, $this->locationGeo)
             ->setUseTimezone(true)
             ->setTimeTransparency('TRANSPARENT');
+
+        if ($this->alarmAction) {
+            $vEvent->addComponent($vAlarm);
+        }
 
         $vCalendar->addEvent($vEvent);
 

@@ -59,11 +59,7 @@ class PlainIcsPlugin extends BasePlugin
      */
     public function getDocumentationUrl()
     {
-<<<<<<< HEAD
-        return '';
-=======
         return 'https://github.com/plainlanguage/craft-plain-ics';
->>>>>>> develop
     }
 
     /**
@@ -83,7 +79,7 @@ class PlainIcsPlugin extends BasePlugin
      */
     public function getVersion()
     {
-        return '0.1';
+        return '0.2';
     }
 
     /**
@@ -93,7 +89,7 @@ class PlainIcsPlugin extends BasePlugin
      */
     public function getSchemaVersion()
     {
-        return '0.1';
+        return '0.2';
     }
 
 }
