@@ -1,31 +1,34 @@
 [
     {
         "name": "eluceo/ical",
-        "version": "0.1.2",
-        "version_normalized": "0.1.2.0",
+        "version": "0.13.0",
+        "version_normalized": "0.13.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/eluceo/iCal.git",
-            "reference": "db02a891cfcff21a319c159d2054bb02e6d537fb"
+            "url": "https://github.com/markuspoerschke/iCal.git",
+            "reference": "913b89e67b9f7865e1399b2dbc22d21857e7e236"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/eluceo/iCal/zipball/db02a891cfcff21a319c159d2054bb02e6d537fb",
-            "reference": "db02a891cfcff21a319c159d2054bb02e6d537fb",
+            "url": "https://api.github.com/repos/markuspoerschke/iCal/zipball/913b89e67b9f7865e1399b2dbc22d21857e7e236",
+            "reference": "913b89e67b9f7865e1399b2dbc22d21857e7e236",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.0"
+            "php": ">=7.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "3.7.*"
+            "phpunit/phpunit": "^6.0"
         },
-        "time": "2014-07-06 11:20:39",
+        "suggest": {
+            "ext-mbstring": "Massive performance enhancement of line folding"
+        },
+        "time": "2017-10-26T11:24:45+00:00",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
-            "psr-0": {
-                "Eluceo\\iCal": "src/"
+            "psr-4": {
+                "Eluceo\\iCal\\": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -34,18 +37,13 @@
         ],
         "authors": [
             {
-                "name": "Maciej Łebkowski",
-                "email": "m.lebkowski@gmail.com",
-                "role": "Contributor"
-            },
-            {
                 "name": "Markus Poerschke",
                 "email": "markus@eluceo.de",
                 "role": "Developer"
             }
         ],
-        "description": "The eluceo/iCal package offers a abstraction layer for creating iCalendars. You can easily create iCal files by using PHP object instead of typing your *.ics file by hand. The output will follow RFC 2445 as best as possible.",
-        "homepage": "https://github.com/eluceo/iCal",
+        "description": "The eluceo/iCal package offers a abstraction layer for creating iCalendars. You can easily create iCal files by using PHP object instead of typing your *.ics file by hand. The output will follow RFC 5545 as best as possible.",
+        "homepage": "https://github.com/markuspoerschke/iCal",
         "keywords": [
             "calendar",
             "iCalendar",

@@ -10,20 +10,20 @@ date_default_timezone_set('Europe/Berlin');
 $vCalendar = new \Eluceo\iCal\Component\Calendar('www.example.com');
 
 // 2. Create an event
-$vEvent = new \Eluceo\iCal\Component\Event();
-$vEvent->setDtStart(new \DateTime('2012-12-31'));
-$vEvent->setDtEnd(new \DateTime('2012-12-31'));
-$vEvent->setNoTime(true);
-$vEvent->setSummary('New Year’s Eve');
+$vEvent = new \Eluceo\iCal\Component\Event('123456');
+$vEvent->setDtStart(new \DateTime('2012-11-11 13:00:00'));
+$vEvent->setDtEnd(new \DateTime('2012-11-11 14:30:00'));
+$vEvent->setSummary('Weekly lunch with Markus');
 
 // Set recurrence rule
 $recurrenceRule = new \Eluceo\iCal\Property\Event\RecurrenceRule();
-$recurrenceRule->setFreq(\Eluceo\iCal\Property\Event\RecurrenceRule::FREQ_YEARLY);
+$recurrenceRule->setFreq(\Eluceo\iCal\Property\Event\RecurrenceRule::FREQ_WEEKLY);
 $recurrenceRule->setInterval(1);
 $vEvent->setRecurrenceRule($recurrenceRule);
 
 // Adding Timezone (optional)
 $vEvent->setUseTimezone(true);
+$vEvent->setTimezoneString('/example.com/1.0.0-0/Europe/Berlin');
 
 // 3. Add event to calendar
 $vCalendar->addComponent($vEvent);

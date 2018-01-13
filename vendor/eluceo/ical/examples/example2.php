@@ -15,12 +15,13 @@ $vEvent->setDtStart(new \DateTime('2012-12-24'));
 $vEvent->setDtEnd(new \DateTime('2012-12-24'));
 $vEvent->setNoTime(true);
 $vEvent->setSummary('Summary with some german "umlauten" and a backslash \\: Kinder mögen Äpfel pflücken.');
+$vEvent->setCategories(['holidays']);
 
 // Adding Timezone (optional)
 $vEvent->setUseTimezone(true);
 
 // 3. Add event to calendar
-$vCalendar->addEvent($vEvent);
+$vCalendar->addComponent($vEvent);
 
 // 4. Set headers
 header('Content-Type: text/calendar; charset=utf-8');
