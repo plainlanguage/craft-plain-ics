@@ -5,31 +5,34 @@
  *
  * (c) Markus Poerschke <markus@eluceo.de>
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Eluceo\iCal;
 
+use Eluceo\iCal\Property\ArrayValue;
 use Eluceo\iCal\Property\StringValue;
 use Eluceo\iCal\Property\ValueInterface;
 
 /**
- * The Property Class represents a property as defined in RFC 2445
+ * The Property Class represents a property as defined in RFC 5545.
  *
- * The content of a line (unfolded) will be rendered in this class
+ * The content of a line (unfolded) will be rendered in this class.
+ *
+ * @see https://tools.ietf.org/html/rfc5545#section-3.5
  */
 class Property
 {
     /**
-     * The value of the Property
+     * The value of the Property.
      *
      * @var ValueInterface
      */
     protected $value;
 
     /**
-     * The params of the Property
+     * The params of the Property.
      *
      * @var ParameterBag
      */
@@ -41,12 +44,11 @@ class Property
     protected $name;
 
     /**
-     * @param $name
-     * @param $value
+     * @param       $name
+     * @param       $value
      * @param array $params
-     * @return \Eluceo\iCal\Property
      */
-    public function __construct($name, $value, $params = array())
+    public function __construct($name, $value, $params = [])
     {
         $this->name = $name;
         $this->setValue($value);
@@ -54,7 +56,7 @@ class Property
     }
 
     /**
-     * Renders an unfolded line
+     * Renders an unfolded line.
      *
      * @return string
      */
@@ -64,7 +66,8 @@ class Property
         $line = $this->getName();
 
         // Adding params
-        if ($this->parameterBag->hasParams()) {
+        //@todo added check for $this->parameterBag because doctrine/orm proxies won't execute constructor - ok?
+        if ($this->parameterBag && $this->parameterBag->hasParams()) {
             $line .= ';' . $this->parameterBag->toString();
         }
 
@@ -75,8 +78,18 @@ class Property
     }
 
     /**
+     * Get all unfolded lines.
+     *
+     * @return array
+     */
+    public function toLines()
+    {
+        return [$this->toLine()];
+    }
+
+    /**
      * @param string $name
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return $this
      */
@@ -89,7 +102,6 @@ class Property
 
     /**
      * @param $name
-     * @return null
      */
     public function getParam($name)
     {
@@ -98,17 +110,23 @@ class Property
 
     /**
      * @param mixed $value
+     *
      * @return $this
+     *
      * @throws \Exception
      */
     public function setValue($value)
     {
         if (is_scalar($value)) {
             $this->value = new StringValue($value);
-        } else if (!$value instanceof ValueInterface) {
-            throw new \Exception("The value must implement the ValueInterface.");
+        } elseif (is_array($value)) {
+            $this->value = new ArrayValue($value);
         } else {
-            $this->value = $value;
+            if (!$value instanceof ValueInterface) {
+                throw new \Exception('The value must implement the ValueInterface.');
+            } else {
+                $this->value = $value;
+            }
         }
 
         return $this;
@@ -125,7 +143,7 @@ class Property
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }

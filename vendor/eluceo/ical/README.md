@@ -1,27 +1,30 @@
 # eluceo — iCal
 
-[![Build Status](https://secure.travis-ci.org/eluceo/iCal.png)](http://travis-ci.org/eluceo/iCal) [![Code Coverage](https://scrutinizer-ci.com/g/eluceo/iCal/badges/coverage.png?s=96bd87d2615285caaef1173e80f0aad7ac98d86a)](https://scrutinizer-ci.com/g/eluceo/iCal/) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/eluceo/iCal/badges/quality-score.png?s=dd55c5a4e8acc26b2436c2f55c4c14e3fd1026cb)](https://scrutinizer-ci.com/g/eluceo/iCal/) [![Latest Stable Version](https://poser.pugx.org/eluceo/ical/v/stable.png)](https://packagist.org/packages/eluceo/ical) [![Total Downloads](https://poser.pugx.org/eluceo/ical/downloads.png)](https://packagist.org/packages/eluceo/ical) [![License](https://poser.pugx.org/eluceo/ical/license.png)](https://packagist.org/packages/eluceo/ical)
+[![License](https://poser.pugx.org/eluceo/ical/license)](https://packagist.org/packages/eluceo/ical)
+[![Latest Stable Version](https://poser.pugx.org/eluceo/ical/v/stable)](https://packagist.org/packages/eluceo/ical)
+[![Monthly Downloads](https://poser.pugx.org/eluceo/ical/d/monthly)](https://packagist.org/packages/eluceo/ical)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/markuspoerschke/iCal/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/markuspoerschke/iCal/?branch=master) 
+[![Code Coverage](https://scrutinizer-ci.com/g/markuspoerschke/iCal/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/markuspoerschke/iCal/?branch=master) 
+[![Build Status](https://travis-ci.org/markuspoerschke/iCal.svg?branch=master)](https://travis-ci.org/markuspoerschke/iCal)
 
-This package offers a abstraction layer for creating iCalendars. The output will 
-follow [RFC 2445](http://www.ietf.org/rfc/rfc2445.txt) as best as possible.
+This package offers a abstraction layer for creating iCalendars. The output will
+follow [RFC 5545](http://www.ietf.org/rfc/rfc5545.txt) as best as possible.
 
 The following components are supported at this time:
 
 * VCALENDAR
 * VEVENT
+* VALARM
+* VTIMEZONE
 
 ## Installation
 
-You can install this package by using [Composer](http://getcomposer.org). 
-Link to Packagist: https://packagist.org/packages/eluceo/ical
+You can install this package by using [Composer](http://getcomposer.org), running this command:
 
+```sh
+composer require eluceo/ical
 ```
-{
-    "require": {
-        "eluceo/ical": "*"
-    }
-}
-```
+Link to Packagist: https://packagist.org/packages/eluceo/ical
 
 ## Usage
 
@@ -53,7 +56,7 @@ $vEvent
 #### 4. Add Event to Calendar
 
 ```PHP
-$vCalendar->addEvent($vEvent);
+$vCalendar->addComponent($vEvent);
 ```
 
 #### 5. Set HTTP-headers
@@ -83,14 +86,42 @@ DTSTART:20121224T180000Z
 
 #### 2. Use explicit timezone
 
-You can use an explicit timezone by calling `$vEvent->setUseTimezone(true);`. The timezone of your 
-`\DateTime` object will be used. The output will be as following:
+You can use an explicit timezone by calling `$vEvent->setUseTimezone(true);`. The timezone of your
+`\DateTime` object will be used. In this case the non-standard field "X-WR-TIMEZONE" will be used.
+Be awre that this is a simple solution which is not supported by all calendar clients.
+The output will be as following:
 
 ```
 DTSTART;TZID=Europe/Berlin:20121224T180000
 ```
 
-#### 3. Use locale time
+#### 3. Use explicit timezone with definition
+
+You can use an explicit timezone and define it using `Timezone()` and `TimezoneRule()` (see example5.php).
+The timezone of your `\DateTime` object will be used. The output will be as following:
+
+```
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+X-LIC-LOCATION:Europe/Berlin
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+DTSTART:19810329T030000
+RRULE:FREQ=YEARLY;INTERVAL=1;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+DTSTART:19961027T030000
+RRULE:FREQ=YEARLY;INTERVAL=1;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+...
+DTSTART;TZID=Europe/Berlin:20121224T180000
+```
+
+#### 4. Use locale time
 
 You can use local time by calling `$vEvent->setUseUtc(false);`. The output will be:
 
@@ -98,20 +129,11 @@ You can use local time by calling `$vEvent->setUseUtc(false);`. The output will 
 DTSTART:20121224T180000
 ```
 
-## Running the tests
-
-To setup and run tests:
-
-- go to the root directory of this project
-- download composer: `wget https://getcomposer.org/composer.phar`
-- install dev dependencies: `php composer.phar install --dev`
-- run `./vendor/bin/phpunit -c tests`
-
 ## License
 
 This package is released under the __MIT license__.
 
-Copyright (c) 2012-2014 Markus Poerschke
+Copyright (c) 2012-2017 Markus Poerschke
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -130,7 +152,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/eluceo/ical/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

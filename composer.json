@@ -1,5 +1,5 @@
 {
   "require": {
-    "eluceo/ical": "0.1.2"
+    "eluceo/ical": "0.13.0"
   }
 }

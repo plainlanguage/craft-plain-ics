@@ -4,22 +4,27 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit697a7099aa13d8ee162ea9b74cb689e2
+class ComposerStaticInitfe3c94d85dadd02ad23aa7ceff58556b
 {
-    public static $prefixesPsr0 = array (
+    public static $prefixLengthsPsr4 = array (
         'E' => 
         array (
-            'Eluceo\\iCal' => 
-            array (
-                0 => __DIR__ . '/..' . '/eluceo/ical/src',
-            ),
+            'Eluceo\\iCal\\' => 12,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Eluceo\\iCal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/eluceo/ical/src',
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInit697a7099aa13d8ee162ea9b74cb689e2::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfe3c94d85dadd02ad23aa7ceff58556b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfe3c94d85dadd02ad23aa7ceff58556b::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }
