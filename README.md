@@ -6,7 +6,12 @@ A Craft CMS plugin that implements [eluceo/iCal](https://github.com/eluceo/iCal)
 
 ### `render`
 
-The plugin includes a single Twig variable, `render`, which accepts an array/object of parameters to render the iCal event.
+The plugin includes a single Twig variable, `render`, which accepts an array/object of parameters to render the iCal event, and an optional boolean indicating whether to force-download and exit, or return the iCal contents.
+
+Specifying the boolean allows you to use the results elsewhere in your Craft plugins, e.g.:
+
+    use \Craft\PlainIcsVariable as PlainIcsVariable;
+    $results = PlainIcsVariable::render($params, true);
 
 #### Parameters
 
