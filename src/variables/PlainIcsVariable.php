@@ -10,6 +10,7 @@
 namespace plainlanguage\plainics\variables;
 
 use plainlanguage\plainics\PlainIcs;
+use plainlanguage\plainics\models\PlainIcs_EventModel;
 
 use Craft;
 
@@ -45,9 +46,7 @@ class PlainIcsVariable
 
         // Loop through parameters and populate the model.
         foreach ($parameters as $key => $parameter) {
-            if (isset($event->$key)) {
-                $event->$key = $parameter;
-            }
+            $event->$key = $parameter;
         }
 
         // Set the filename for the .ics file.
