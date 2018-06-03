@@ -14,8 +14,6 @@ use plainlanguage\plainics\PlainIcs;
 use Craft;
 use craft\base\Model;
 
-require __DIR__ . '/../vendor/autoload.php';
-
 use Eluceo\iCal\Component\Calendar as iCal;
 use Eluceo\iCal\Component\Event as iCalEvent;
 use Eluceo\iCal\Component\Alarm as iCalAlarm;
@@ -101,7 +99,7 @@ class PlainIcs_EventModel extends Model
     {
         $timezone = new \DateTimeZone(Craft::$app->getTimeZone());
 
-        $vCalendar = new iCal(Craft::$app->config->general->siteUrl);
+        $vCalendar = new iCal(Craft::$app->config->general->siteUrl || 'site');
         $vEvent    = new iCalEvent();
         $vAlarm    = new iCalAlarm();
         $startDate = new \DateTime($this->startDateTime, $timezone);
