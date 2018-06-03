@@ -7,10 +7,10 @@
  * @license   MIT License https://opensource.org/licenses/MIT
  */
 
-namespace plainlanguage\plainics\variables;
+namespace plainlanguage\plainIcs\variables;
 
-use plainlanguage\plainics\PlainIcs;
-use plainlanguage\plainics\models\PlainIcs_EventModel;
+use plainlanguage\plainIcs\PlainIcs;
+use plainlanguage\plainIcs\models\PlainIcs_EventModel;
 
 use Craft;
 

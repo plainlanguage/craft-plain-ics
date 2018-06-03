@@ -7,9 +7,9 @@
  * @license   MIT License https://opensource.org/licenses/MIT
  */
 
-namespace plainlanguage\plainics\models;
+namespace plainlanguage\plainIcs\models;
 
-use plainlanguage\plainics\PlainIcs;
+use plainlanguage\plainIcs\PlainIcs;
 
 use Craft;
 use craft\base\Model;

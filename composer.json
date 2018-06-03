@@ -27,16 +27,16 @@
     },
     "autoload": {
         "psr-4": {
-            "plainlanguage\\plainics\\": "src/"
+            "plainlanguage\\plainIcs\\": "src/"
         }
     },
     "extra": {
         "name": "Plain ICS.",
-        "handle": "plainics",
+        "handle": "plainIcs",
         "schemaVersion": "1.0.0",
         "hasCpSettings": false,
         "hasCpSection": false,
         "changelogUrl": "https://raw.githubusercontent.com/plainlanguage/craft-plain-ics/CHANGELOG.md",
-        "class": "plainlanguage\\plainics\\PlainIcs"
+        "class": "plainlanguage\\plainIcs\\PlainIcs"
     }
 }

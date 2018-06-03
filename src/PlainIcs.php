@@ -9,9 +9,9 @@
  * @license   MIT License https://opensource.org/licenses/MIT
  */
 
-namespace plainlanguage\plainics;
+namespace plainlanguage\plainIcs;
 
-use plainlanguage\plainics\variables\PlainIcsVariable;
+use plainlanguage\plainIcs\variables\PlainIcsVariable;
 
 use Craft;
 use craft\base\Plugin;
@@ -54,13 +54,13 @@ class PlainIcs extends Plugin
             function (Event $event) {
                 /** @var CraftVariable $variable */
                 $variable = $event->sender;
-                $variable->set('plainics', PlainIcsVariable::class);
+                $variable->set('plainIcs', PlainIcsVariable::class);
             }
         );
 
         Craft::info(
             Craft::t(
-                'plainics',
+                'plainIcs',
                 '{name} plugin loaded',
                 ['name' => $this->name]
             ),
@@ -76,6 +76,6 @@ class PlainIcs extends Plugin
      */
     public function getName()
     {
-        return Craft::t('plainics', 'Plain ICS');
+        return Craft::t('plainIcs', 'Plain ICS');
     }
 }
