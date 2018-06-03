@@ -2,6 +2,25 @@
 
 A Craft CMS plugin that implements [eluceo/iCal](https://github.com/eluceo/iCal) package for creating ICS files in your Twig templates.
 
+## Requirements
+
+This plugin requires Craft CMS 3.0.0-RC1 or later.
+
+## Installation
+
+To install the plugin, follow these instructions.
+
+1. Open your terminal and go to your Craft project:
+
+        cd /path/to/project
+
+2. Then tell Composer to load the plugin:
+
+        composer require plainlanguage/craft-plain-ics
+
+3. In the Control Panel, go to Settings → Plugins and click the “Install” button for `craft-plain-ics`.
+
+
 ## Twig Variables
 
 ### `render`

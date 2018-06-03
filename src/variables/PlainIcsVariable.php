@@ -1,9 +1,27 @@
 <?php
-namespace Craft;
+/**
+ * craft-plain-ics plugin for Craft CMS 3.x
+ *
+ * @link      http://plainlanguage.co/
+ * @copyright Copyright (c) 2018 Plain Language
+ * @license   MIT License https://opensource.org/licenses/MIT
+ */
 
+namespace plainlanguage\plainics\variables;
+
+use plainlanguage\plainics\PlainIcs;
+
+use Craft;
+
+/**
+ * Plain ICS template variables
+ *
+ * @author    Plain Language
+ * @package   PlainICS
+ * @since     0.0.2
+ */
 class PlainIcsVariable
 {
-
     /**
      * Render and force-download an .ics file
      * built from the passed in parameters array
@@ -50,5 +68,4 @@ class PlainIcsVariable
         // Die
         exit;
     }
-
 }
