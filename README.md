@@ -2,6 +2,8 @@
 
 A Craft CMS plugin that implements [eluceo/iCal](https://github.com/eluceo/iCal) package for creating ICS files in your Twig templates.
 
+![Screenshot](resources/img/plugin-logo.png)
+
 ## Requirements
 
 This plugin requires Craft CMS 3.0.0-RC1 or later.
