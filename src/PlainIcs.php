@@ -60,7 +60,7 @@ class PlainIcs extends Plugin
 
         Craft::info(
             Craft::t(
-                'plainIcs',
+                'plain-ics',
                 '{name} plugin loaded',
                 ['name' => $this->name]
             ),
@@ -76,6 +76,6 @@ class PlainIcs extends Plugin
      */
     public function getName()
     {
-        return Craft::t('plainIcs', 'Plain ICS');
+        return Craft::t('plain-ics', 'Plain ICS');
     }
 }
