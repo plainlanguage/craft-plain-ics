@@ -26,13 +26,13 @@ use yii\base\Event;
  * Class PlainICS
  *
  * @author    Plain Language
- * @package   PlainICS
+ * @package   PlainIcs
  * @since     0.0.2
  */
 class PlainIcs extends Plugin
 {
     /**
-     * @var PlainICS
+     * @var PlainIcs
      */
     public static $plugin;
 

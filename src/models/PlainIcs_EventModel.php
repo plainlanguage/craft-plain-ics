@@ -22,7 +22,7 @@ use Eluceo\iCal\Component\Alarm as iCalAlarm;
  * Plain ICS Event model
  *
  * @author    Plain Language
- * @package   PlainICS
+ * @package   PlainIcs
  * @since     0.0.2
  */
 class PlainIcs_EventModel extends Model

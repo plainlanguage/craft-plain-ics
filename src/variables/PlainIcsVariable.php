@@ -18,7 +18,7 @@ use Craft;
  * Plain ICS template variables
  *
  * @author    Plain Language
- * @package   PlainICS
+ * @package   PlainIcs
  * @since     0.0.2
  */
 class PlainIcsVariable
