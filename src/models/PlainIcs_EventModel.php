@@ -91,6 +91,16 @@ class PlainIcs_EventModel extends Model
     public $alarmDescription;
 
     /**
+     * @var bool
+     */
+    public $useTimezone = true;
+
+    /**
+     * @var bool
+     */
+    public $useUtc = false;
+
+    /**
      * Force-download the .ics file according to my opinion.
      *
      * @return iCal
@@ -120,6 +130,8 @@ class PlainIcs_EventModel extends Model
             ->setUrl($this->url)
             ->setLocation($this->location, $this->locationTitle, $this->locationGeo)
             ->setUseTimezone(true)
+            ->setUseTimezone($this->useTimezone)
+            ->setUseUtc($this->useUtc)
             ->setTimeTransparency('TRANSPARENT');
 
         if ($this->alarmAction) {

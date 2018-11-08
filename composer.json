@@ -2,7 +2,7 @@
     "name": "plainlanguage/craft-plain-ics",
     "description": "A Craft CMS plugin that implements the eluceo/iCal package for creating ICS files in your Twig templates.",
     "type": "craft-plugin",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "keywords": [
         "craft",
         "cms",
