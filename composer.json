@@ -1,5 +1,42 @@
 {
-  "require": {
-    "eluceo/ical": "0.13.0"
-  }
+    "name": "plainlanguage/craft-plain-ics",
+    "description": "A Craft CMS plugin that implements the eluceo/iCal package for creating ICS files in your Twig templates.",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "ics"
+    ],
+    "support": {
+        "docs": "https://github.com/plainlanguage/craft-plain-ics/blob/README.md",
+        "issues": "https://github.com/plainlanguage/craft-plain-ics/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Plain Language",
+            "homepage": "http://plainlanguage.co/"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1",
+        "eluceo/ical": "0.13.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "plainlanguage\\plainIcs\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Plain ICS.",
+        "handle": "plain-ics",
+        "schemaVersion": "1.0.0",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/plainlanguage/craft-plain-ics/CHANGELOG.md",
+        "class": "plainlanguage\\plainIcs\\PlainIcs"
+    }
 }
